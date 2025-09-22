@@ -34,11 +34,13 @@ export default function App() {
         fetchAll();
     }, []);
 
+    //filtrowanie
     const filtered = characters.filter(
         (c) =>
             c.name.toLowerCase().includes(searchText.toLowerCase()) &&
             (filter ? c.gender === filter : true)
     );
+
 
     if (loading) return <p>Ładowanie danych...</p>;
     if (error) return <p>Coś poszło nie tak, spróbuj ponownie ({error})</p>;
@@ -48,6 +50,7 @@ export default function App() {
         <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
             <h1>Postacie Star Wars</h1>
 
+            {/*lista i filtry*/}
             <input
                 type="text"
                 placeholder="Szukaj..."
@@ -63,6 +66,7 @@ export default function App() {
                 <option value="n/a">Roboty / brak</option>
             </select>
 
+            {/*przefiltrowana lista postaci*/}
             <ul>
                 {filtered.map((c) => (
                     <li key={c.name} onClick={() => setSelected(c)} style={{ cursor: "pointer" }}>
